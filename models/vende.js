@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const anunciascheme = new Schema({
+const vendeScheme = new Schema({
 
   nombre: {
     required: true,
@@ -26,13 +26,13 @@ const anunciascheme = new Schema({
   tipo: {
     required: true,
     type: String,
-    enum: ['Depto','Casa']
+    
   },
-  valorAprox: String,
+  valorAproximado: String,
   comentarios: String
 
 
 })
 
-const Anuncia = mongoose.model('Anuncia', anunciascheme);
-module.exports = Anuncia;
+const Vende = mongoose.model('Vende', vendeScheme);
+module.exports = Vende;

@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const contrataSchema = new Schema({
+const compraSchema = new Schema({
+  
+tipo: String,
+precioMax: Number,
+
+formaDeCompra : String,
+zona : String,
 nombre: String,
 apellido: String,
 numero: Number,
@@ -11,5 +17,5 @@ comentarios: String
 })
 
 
-const Contrata = mongoose.model('Contrata', contrataSchema);
- module.exports = Contrata;
+const Compra = mongoose.model('Compra', compraSchema);
+ module.exports = Compra;

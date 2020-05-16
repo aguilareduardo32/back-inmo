@@ -1,12 +1,18 @@
 
 const Compra = require('../models/compra');
-const Anuncia = require('../models/anuncia');
+const Vende = require('../models/vende');
 
   exports.infoSoli = (req, res) => {
 
         Compra.create({
+         
+          tipo: req.body.tipo,
+          precioMax: req.body.precioMax,
+       
+          formaDeCompra: req.body.formaDeCompra,
+          zona: req.body.zona,
           nombre: req.body.nombre,
-          aprellido: req.body.aprellido,
+          apellido: req.body.apellido,
           numero: req.body.numero,
           email: req.body.email,
           comentarios: req.body.comentarios
@@ -22,7 +28,7 @@ const Anuncia = require('../models/anuncia');
 
   exports.infoServ = (req, res) => {
 
-        Anuncia.create({
+        Vende.create({
           nombre: req.body.nombre,
           correo: req.body.correo,
           telefono: req.body.telefono,
