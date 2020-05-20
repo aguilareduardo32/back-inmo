@@ -19,12 +19,8 @@
    delegacion:String,
    baños: Number,
    telefono:Number,
-   fotos:  [{ type: String }]
-     }
+   image:  [{ type: String, required: true }]
    
- , 
-{
-   timestamps: true
  });
 
  const Inmueble = mongoose.model('Inmueble', inmuebleSchema);

@@ -10,8 +10,11 @@ const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
 var session = require('express-session')
+const upload = require('./uploads/multer')
 
+const cloudinary = require('./configs/cloudinary')
 
+const fs = require('fs')
 
 
 
@@ -86,7 +89,40 @@ app.use('/api', InmueblesRoutes);
 const Solicitudes = require('./routes/interesados');
 app.use('/api', Solicitudes);
 
-
 app.use('/api', require('./routes/PicUpload'));
+
+// make a post request
+
+app.use('/upload-images', upload.array('image'), async( req, res) => {
+  
+  const uploader = async (path) => await cloudinary.uploads(path, 'Images')
+  if (req.method === 'POST')
+  {
+      const urls = []
+
+      const files = req.files
+
+      for (const file of files) {
+          const { path } = file
+
+          const newPath = await uploader(path)
+
+          urls.push(newPath)
+
+          fs.unlinkSync(path)
+      }
+
+      res.status(200).json({
+        message: 'images uploade succesfully',
+        data: urls
+      })
+  } else {
+     res.status(405).json({
+        err: "Images not uploaded"
+     })
+  }
+})
+
+
 
 module.exports = app;
