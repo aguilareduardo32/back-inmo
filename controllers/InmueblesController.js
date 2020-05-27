@@ -19,7 +19,9 @@ const Inmueble = require('../models/inmueble');
       delegacion: req.body.delegacion,
       baños: req.body.baños,
       telefono: req.body.telefono,
-      image:req.body.image
+      image1:req.body.image1,
+      image2:req.body.image2,
+      image3:req.body.image3
     })  
     .then(response => {
       res.json(response);

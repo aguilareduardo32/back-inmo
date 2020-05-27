@@ -90,10 +90,12 @@ const Solicitudes = require('./routes/interesados');
 app.use('/api', Solicitudes);
 
 app.use('/api', require('./routes/PicUpload'));
+app.use('/api', require('./routes/PicUpload2'));
+app.use('/api', require('./routes/PicUpload3'));
 
 // make a post request
 
-app.use('/upload-images', upload.array('image'), async( req, res) => {
+/* app.use('/upload-images', upload.array('image'), async( req, res) => {
   
   const uploader = async (path) => await cloudinary.uploads(path, 'Images')
   if (req.method === 'POST')
@@ -122,7 +124,7 @@ app.use('/upload-images', upload.array('image'), async( req, res) => {
      })
   }
 })
-
+*/
 
 
 module.exports = app;
