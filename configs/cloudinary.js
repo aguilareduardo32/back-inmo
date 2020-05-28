@@ -1,29 +1,29 @@
- const cloudinary = require('cloudinary');
-const multer = require('multer');
-const dotenv = require('dotenv')
-dotenv.config()
+const cloudinary = require("cloudinary");
+const multer = require("multer");
+const dotenv = require("dotenv");
+dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.cloudName,
   api_key: process.env.cloudKey,
-  api_secret: process.env.cloudSecret
-})
+  api_secret: process.env.cloudSecret,
+});
 
-
-
-
-
-  exports.uploads = (file,folder) => {
-    return new Promise(resolve => {
-      cloudinary.uploader.upload(file, (result) => {
+exports.uploads = (file, folder) => {
+  console.log(process.env.cloudName);
+  return new Promise((resolve) => {
+    cloudinary.uploader.upload(
+      file,
+      (result) => {
         resolve({
           url: result.url,
-          id: result.public_id 
-        })
-      }, {
+          id: result.public_id,
+        });
+      },
+      {
         resource_type: "auto",
-        folder: folder
-      })
-    })
-  }
-
+        folder: folder,
+      }
+    );
+  });
+};

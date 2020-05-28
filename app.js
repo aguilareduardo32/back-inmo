@@ -94,35 +94,32 @@ app.use("/api", require("./routes/PicUpload3"));
 
 // make a post request
 
-/* app.use('/upload-images', upload.array('image'), async( req, res) => {
-  
-  const uploader = async (path) => await cloudinary.uploads(path, 'Images')
-  if (req.method === 'POST')
-  {
-      const urls = []
+app.use("/upload-images", upload.array("image"), async (req, res) => {
+  const uploader = async (path) => await cloudinary.uploads(path, "Images");
+  if (req.method === "POST") {
+    const urls = [];
 
-      const files = req.files
+    const files = req.files;
 
-      for (const file of files) {
-          const { path } = file
+    for (const file of files) {
+      const { path } = file;
 
-          const newPath = await uploader(path)
+      const newPath = await uploader(path);
 
-          urls.push(newPath)
+      urls.push(newPath);
 
-          fs.unlinkSync(path)
-      }
+      fs.unlinkSync(path);
+    }
 
-      res.status(200).json({
-        message: 'images uploade succesfully',
-        data: urls
-      })
+    res.status(200).json({
+      message: "images uploade succesfully",
+      data: urls,
+    });
   } else {
-     res.status(405).json({
-        err: "Images not uploaded"
-     })
+    res.status(405).json({
+      err: "Images not uploaded",
+    });
   }
-})
-*/
+});
 
 module.exports = app;
