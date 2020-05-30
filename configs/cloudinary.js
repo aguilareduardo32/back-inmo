@@ -1,3 +1,4 @@
+require("dotenv").config();
 const cloudinary = require("cloudinary");
 const multer = require("multer");
 const dotenv = require("dotenv");
@@ -8,7 +9,6 @@ cloudinary.config({
   api_key: process.env.cloudKey,
   api_secret: process.env.cloudSecret,
 });
-
 exports.uploads = (file, folder) => {
   console.log(process.env.cloudName);
   return new Promise((resolve) => {

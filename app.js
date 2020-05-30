@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
@@ -13,6 +12,8 @@ var session = require("express-session");
 const upload = require("./uploads/multer");
 
 const cloudinary = require("./configs/cloudinary");
+
+// console.log(process.env.cloud_name);
 
 const fs = require("fs");
 
@@ -94,25 +95,25 @@ app.use("/api", require("./routes/PicUpload3"));
 
 // make a post request
 
-app.use("/upload-images", upload.array("image"), async (req, res) => {
+app.use("/api/upload-images", upload.array("image"), async (req, res) => {
   const uploader = async (path) => await cloudinary.uploads(path, "Images");
   if (req.method === "POST") {
     const urls = [];
 
     const files = req.files;
-
+    console.log(files);
     for (const file of files) {
       const { path } = file;
-
       const newPath = await uploader(path);
-
-      urls.push(newPath);
-
+      // console.log("newPath = ", newPath);
+      urls.push(newPath.url);
+      // urls.push(newPath);
+      // console.log("urls = ", urls);
       fs.unlinkSync(path);
     }
 
     res.status(200).json({
-      message: "images uploade succesfully",
+      message: "images uploaded succesfully",
       data: urls,
     });
   } else {
