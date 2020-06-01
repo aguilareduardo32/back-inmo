@@ -20,6 +20,7 @@ const inmuebleSchema = new Schema({
   precio: Number,
   delegacion: String,
   baños: Number,
+  vendedor: String,
   telefono: Number,
   image1: { type: String, required: false },
   image2: { type: String, required: false },
