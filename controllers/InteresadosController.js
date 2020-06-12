@@ -2,6 +2,29 @@
 const Compra = require('../models/compra');
 const Vende = require('../models/vende');
 const Contacto = require('../models/contacto')
+const InteresadoEsp = require('../models/interesadoInmuebleEsp')
+
+  exports.infoEspecifico = ( req, res) => {
+
+    InteresadoEsp.create({
+
+      email: req.body.email,
+      nombre: req.body.nombre,
+      telefono: req.body.telefono,
+      mensaje: req.body.mensaje,
+      inmuebleId: req.params
+    })
+    .then(response => {
+      res.json(response);
+      })
+      .catch(err => {
+      res.json(err);
+      })
+
+
+  }
+
+
 
   exports.nuevoContacto = ( req, res) => {
 

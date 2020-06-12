@@ -87,7 +87,7 @@ const InmueblesRoutes = require("./routes/inmuebles");
 app.use("/api", InmueblesRoutes);
 
 const Solicitudes = require("./routes/interesados");
-app.use("/api", Solicitudes);
+app.use("/api/in", Solicitudes);
 
 app.use("/api", require("./routes/PicUpload"));
 app.use("/api", require("./routes/PicUpload2"));
