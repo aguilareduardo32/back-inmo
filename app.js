@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
@@ -14,11 +14,11 @@ const upload = require("./uploads/multer");
 const cloudinary = require("./configs/cloudinary");
 
 // console.log(process.env.cloud_name);
-
+require("dotenv").config({ path: '.env'});
 const fs = require("fs");
 
 mongoose
-  .connect("mongodb://localhost:27017/inmobiliaria", { useNewUrlParser: true })
+  .connect( process.env.DB_URL, { useNewUrlParser: true })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
