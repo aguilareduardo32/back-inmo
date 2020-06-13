@@ -129,5 +129,6 @@ app.use((req, res, next) => {
   res.sendFile(__dirname + "./public/index.html");
 });
 
+const port = process.env.host || 5000;
 
 module.exports = app;
