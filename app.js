@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
@@ -13,6 +13,9 @@ const upload = require("./uploads/multer");
 
 const cloudinary = require("./configs/cloudinary");
 
+require("dotenv").config();
+
+console.log(process.env.DB_URL)
 // console.log(process.env.cloud_name);
 
 const fs = require("fs");
