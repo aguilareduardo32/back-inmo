@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
@@ -14,11 +14,11 @@ const upload = require("./uploads/multer");
 const cloudinary = require("./configs/cloudinary");
 
 // console.log(process.env.cloud_name);
-require("dotenv").config({ path: '.env'});
+
 const fs = require("fs");
 
 mongoose
-  .connect( process.env.DB_URL, { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/inmobiliaria", { useNewUrlParser: true })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -122,13 +122,5 @@ app.use("/api/upload-images", upload.array("image"), async (req, res) => {
     });
   }
 });
-
-
-app.use((req, res, next) => {
-  // If no routes match, send them the React HTML.
-  res.sendFile(__dirname + "./public/index.html");
-});
-
-const port = process.env.PORT || 5000;
 
 module.exports = app;
